@@ -25,14 +25,14 @@ Configuration
 You can configure credentials via a .env file or pass them directly during initialization.
 
 ✅ Option 1: Using .env
-
+```
 PATHAO_BASE_URL=https://api.pathao.com
 PATHAO_STORE_ID=12345
 PATHAO_CLIENT_ID=your_client_id
 PATHAO_CLIENT_SECRET=your_client_secret
 PATHAO_USERNAME=merchant@you.com
 PATHAO_PASSWORD=yourpassword
-
+```
 ✅ Option 2: Initialize with Arguments
 
 ```
@@ -82,9 +82,9 @@ get_stores()	# Retrieve Pathao store information
 
 Error Handling
 
-Missing credentials - ValueError
+Missing credentials - ValueError
 
-Missing method parameters - Exception
+Missing method parameters - Exception
 
 
 
