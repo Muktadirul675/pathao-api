@@ -1,8 +1,7 @@
 ![GitHub Stars](https://img.shields.io/github/stars/Muktadirul675/pathao-api?style=social)  
 ![PyPI Version](https://img.shields.io/pypi/v/pathao-api)  
-.. ![Build Status](https://img.shields.io/github/actions/workflow/status/Muktadirul675/pathao-api/tests.yml)
 
-# PathaoAPI - Unofficial Python Wrapper for Pathao Merchant API
+# PathaoAPI - Unofficial Python Wrapper for Pathao Merchant API
 
 `pathao-api` is a lightweight Python SDK that allows developers to interact with Pathao's Merchant API, providing utilities for:
 
