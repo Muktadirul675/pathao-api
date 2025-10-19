@@ -166,3 +166,20 @@ def get_stores_info(url:str, token:str):
 
     return data
 
+@token_required
+def create_order(url:str, token: str, payload: dict):
+    headers = {
+        "Accept": "application/json",
+        "Authorization": f"Bearer {token}"
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=payload)
+        response.raise_for_status()
+    except requests.RequestException as e:
+        raise RuntimeError(f"Request failed: {e}") from e
+
+    try:
+        return response.json()
+    except ValueError:
+        raise ValueError("Response is not valid JSON")

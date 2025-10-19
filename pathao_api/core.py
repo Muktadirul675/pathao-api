@@ -75,14 +75,14 @@ class PathaoAPI:
         res = controllers.get_area_list(self.routes.AREA_LIST(zone_id),token=self.access_token)
         return res
 
-    def get_delivery_charge(self,city_id, zone_id):
+    def get_delivery_charge(self,city_id, zone_id, item_type:int=2,delivery_type:int=48, item_weight:float=0.5):
         if not zone_id or not city_id:
             raise Exception("Both zone id and city id is required")
         res = controllers.get_price_plan(self.routes.PRICE_PLAN,payload={
             "store_id" : self.store_id,
-            "item_type": 2,
-            "delivery_type" : 48,
-            "item_weight" : 0.5,
+            "item_type": item_type,
+            "delivery_type" : delivery_type,
+            "item_weight" : f"{item_weight}",
             "recipient_city": city_id,
             "recipient_zone": zone_id
         },token=self.access_token)
@@ -90,4 +90,22 @@ class PathaoAPI:
 
     def get_stores(self):
         res = controllers.get_stores_info(self.routes.STORES_INFO, token=self.access_token)
+        return res
+    
+    def create_order(self, order_id:str,recipient_name:str,recipient_phone:str,recipient_address:str, item_quantity:int, amount_to_collect:int, delivery_type:int=48, item_type:int=2, special_instruction:str="",item_weight:float=0.5,item_description:str=''):
+        payload = {
+            "store_id": self.store_id,
+            "merchant_order_id": order_id,
+            "recipient_name": recipient_name,
+            "recipient_phone": recipient_phone,
+            "recipient_address": recipient_address,
+            "delivery_type": delivery_type,
+            "item_type": item_type,
+            "special_instruction": special_instruction,
+            "item_quantity": item_quantity,
+            "item_weight": f"{item_weight}",
+            "item_description": item_description,
+            "amount_to_collect": amount_to_collect
+        }
+        res = controllers.create_order(self.routes.CREATE_ORDER, token=self.access_token, payload=payload)
         return res

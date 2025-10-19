@@ -9,8 +9,7 @@
 ✅ City / Zone / Area lookup  
 ✅ Delivery charge estimation  
 ✅ Store information retrieval
-
----
+✅ Create Order
 
 ## Installation
 
@@ -18,9 +17,7 @@
 pip install pathao-api
 ```
 
----
-
-Configuration
+## Configuration
 
 You can configure credentials via a .env file or pass them directly during initialization.
 
@@ -48,60 +45,35 @@ client = PathaoAPI(
 )
 ```
 
----
 
-Usage
+## Usage
 
 ```
 from pathao_api import PathaoAPI
 
 client = PathaoAPI()
+```
 
+Then you can call the methods using the `client` with necessery parameters.
+### Available Methods
+```
 cities = client.get_city_list()
-zones = client.get_zone_list(city_id=1)
-areas = client.get_area_list(zone_id=5)
-charge = client.get_delivery_charge(city_id=1, zone_id=5)
+zones = client.get_zone_list(city_id:int)
+areas = client.get_area_list(zone_id:int)
+charge = client.get_delivery_charge(city_id:int, zone_id:int)
 stores = client.get_stores()
+order = client.create_order(order_id: str, recipient_name: str, recipient_phone: str, recipient_address: str, item_quantity: int, amount_to_collect: int, delivery_type: int = 48, item_type: int = 2, special_instruction: str = "", item_weight: float = 0.5, item_description: str = '')
 ```
+**The return values are same as pathao's official docs**
 
----
-
-Available Methods
-
-Method	Description
-
-```
-get_city_list()	# Retrieve available cities
-get_zone_list(city_id)	# Retrieve zones within a city
-get_area_list(zone_id)	# Retrieve areas within a zone
-get_delivery_charge(city_id, zone_id)	# Get delivery charge estimation
-get_stores()	# Retrieve Pathao store information
-```
-
----
-
-Error Handling
-
-Missing credentials - ValueError
-
-Missing method parameters - Exception
-
-
-
----
-
-Contributing
+## Contributing
 
 Contributions are welcome! Submit an issue or PR.
 
-
 ---
 
-License
+## License
 
 MIT License.
-
-
----
 
 ⭐ If you find this package helpful, consider giving a star!
